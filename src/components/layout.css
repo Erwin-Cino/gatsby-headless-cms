@@ -620,3 +620,13 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+/* Own CSS */
+.title-post {
+  text-align: center;
+}
+.featured-blog-image {
+  display: flex !important;
+  justify-content: center;
+  margin: 0 auto !important;
+}
