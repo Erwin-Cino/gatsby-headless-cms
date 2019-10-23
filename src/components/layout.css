@@ -630,3 +630,39 @@ pre tt:after {
   justify-content: center;
   margin: 0 auto !important;
 }
+.black {
+  width: 500px;
+  height: 500px;
+  background-color: #000;
+}
+.home-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.home-flex-child {
+  flex: 1 0 25%;
+  margin: 15px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-flex-child:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.post-title {
+  text-align: center;
+}
+@media (max-width: 460px) {
+  .home-flex,
+  .home-flex-child {
+    display: block;
+  }
+  .home-flex-child {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+}

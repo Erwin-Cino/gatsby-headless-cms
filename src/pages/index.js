@@ -1,40 +1,37 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import BlogLink from "../components/BlogLink"
 import SEO from "../components/seo"
+import description from "../components/Description"
 
 export default ({ data }) => {
-  // const resolutions =
-  //   data.allWordpressPost.edges.node.featured_media.localFile.childImageSharp
-  //     .resolutions
-  // console.log(resolutions)
+  const featured = data.allWordpressPost.edges.map(
+    ({ node }) => node.featured_media
+  )
+  console.log(featured)
   return (
     <Layout>
-      <SEO title="home" />
+      <SEO title={description.title} />
       <h1>Headless CMS All The Way!</h1>
-      {data.allWordpressPost.edges.map(({ node }) => (
-        <div>
-          <p>{node.title}</p>
-          <p>{node.excerpt}</p>
-          <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-        </div>
-      ))}
+      <section className="home-flex">
+        {data.allWordpressPost.edges.map(({ node }, i) => (
+          <div className="home-flex-child" key={i}>
+            <Link to={node.slug}>
+              <p className="post-title">{node.title}</p>
+            </Link>
+          </div>
+        ))}
+      </section>
+      <BlogLink />
     </Layout>
   )
 }
 
-/*
-<img src={node.featured_media.localFile.childImageSharp.fluid.src} />
-<Img
-key={node.featured_media.localFile.childImageSharp.fluid.src}
-alt={data.WordpressPost.title}
-sizes={node.featured_media.localFile.childImageSharp.fluid}
-/> */
-
 export const pageQuery = graphql`
   query {
-    allWordpressPost(sort: { fields: [date] }) {
+    allWordpressPost(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           title
@@ -56,4 +53,3 @@ export const pageQuery = graphql`
     }
   }
 `
-console.log(pageQuery)
